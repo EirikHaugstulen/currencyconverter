@@ -3,9 +3,6 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {createEpicMiddleware} from "redux-observable";
-
-const middleware = createEpicMiddleware()
 
 ReactDOM.render(
   <React.StrictMode>

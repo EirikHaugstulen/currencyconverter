@@ -5,7 +5,6 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 const epicMiddleware = createEpicMiddleware()
 
-
 const configureStore = () => {
     const store = createStore(
         rootReducer,
