@@ -4,9 +4,8 @@ import {connect} from "react-redux";
 import {calculateValue} from "../CurrencyConverter/CurrencyConverter.actions";
 import {setCurrentCurrency} from "./Currencylist.actions";
 
-const Currencylist = ({list, loading, setCurrentCurrency}) => {
+const Currencylist = ({list, loading, setCurrentCurrency, currentCurrency}) => {
     const [ currencyList, setCurrencyList ] = useState([])
-    const [ curCurrency, setCurCurrency ] = useState(['USD', 0.235987])
 
     useEffect(() => {
         const arr = Object.entries(list)
@@ -14,28 +13,28 @@ const Currencylist = ({list, loading, setCurrentCurrency}) => {
         setCurrencyList(arr)
     }, [list])
 
-    useEffect(() => {
-        setCurrentCurrency(curCurrency)
-    }, [curCurrency])
+    const clickHandler = (input) => {
+        setCurrentCurrency(input)
+    }
+
 
     return (
         <div style={{textAlign: 'left', padding: '2px 6px', width: '40%'}}>
             <h3>Fetched currencies:</h3>
 
-            {curCurrency === null || curCurrency === undefined ? 'Please select a currency' :
-                <ul style={{listStyle: 'none'}}>
-                    {!loading ? currencyList.map((listItem, index) => {
-                        return <CurrencylistItem key={index} listItem={listItem} setCurCurrency={setCurCurrency}/>
-                    }) : 'Fetching data'}
-                </ul>
-            }
+            <ul style={{listStyle: 'none'}}>
+                {!loading ? currencyList.map((listItem, index) => {
+                    return <CurrencylistItem key={index} listItem={listItem} setCurCurrency={clickHandler}/>
+                }) : 'Fetching data'}
+            </ul>
         </div>
     )
 }
 
 const mapStateToProps = state => ({
     list: state.currencies,
-    loading: state.isLoading
+    loading: state.isLoading,
+    currentCurrency: state.currentCurrency
 })
 
 const mapDispatchToProps = {

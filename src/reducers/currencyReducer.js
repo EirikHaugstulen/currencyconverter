@@ -5,7 +5,7 @@ import {currencylistTypes} from "../components/Currencylist/Currencylist.constan
 const initialState = {
     currencies: [],
     isLoading: false,
-    currentCurrency: ['USD', 0.1176429905],
+    currentCurrency: [],
     calculatedValue: 0,
 }
 

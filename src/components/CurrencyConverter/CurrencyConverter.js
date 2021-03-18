@@ -7,11 +7,15 @@ const CurrencyConverter = ({currentCurrency, calculatedValue, calculateValue}) =
         <div style={{width: '40%'}}>
             <h3>Converter</h3>
 
-            <p>NOK:</p>
-            <input type={'number'} onChange={e => calculateValue(e.target.value)}/>
 
-            <p>{currentCurrency}</p>
-            <p>{calculatedValue.toFixed(2)} {currentCurrency}</p>
+            {currentCurrency === null || currentCurrency === [] || currentCurrency === undefined ? 'Please select a currency' :
+                <div>
+                    <p>NOK:</p>
+                    <input type={'number'} onChange={e => calculateValue(e.target.value)}/>
+                    <p>{currentCurrency}</p>
+                    <p>{calculatedValue.toFixed(2)} {currentCurrency}</p>
+                </div>
+            }
         </div>
     )
 }
