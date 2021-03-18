@@ -1,8 +1,12 @@
 import {currencyTypes} from "../components/SplashScreen/SplashscreenConstants";
+import {currencyConverterTypes} from "../components/CurrencyConverter/CurrencyConverterTypes"
+import {currencylistTypes} from "../components/Currencylist/Currencylist.constants";
 
 const initialState = {
     currencies: [],
-    isLoading: false
+    isLoading: false,
+    currentCurrency: ['USD', 0.1176429905],
+    calculatedValue: 0,
 }
 
 export default function (state = initialState, action) {
@@ -22,6 +26,16 @@ export default function (state = initialState, action) {
                 ...state,
                 currencies: action.payload,
                 isLoading: false
+            }
+        case (currencyConverterTypes.CALCULATE_VALUE):
+            return {
+                ...state,
+                calculatedValue: action.payload * state.currentCurrency[1]
+            }
+        case (currencylistTypes.SET_CURRENT_CURRENCY):
+            return {
+                ...state,
+                currentCurrency: action.payload
             }
         default:
             return state;

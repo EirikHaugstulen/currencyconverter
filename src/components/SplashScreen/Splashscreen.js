@@ -1,19 +1,23 @@
 import React, { useEffect } from "react";
 import {connect} from "react-redux";
 import {btnClick, fetchCurrency} from "./SplashscreenActions";
-import {Currencylist} from "../Currencylist/Currencylist";
+import Currencylist from "../Currencylist/Currencylist";
+import CurrencyConverter from "../CurrencyConverter/CurrencyConverter";
 
-const Splashscreen = ({btnClick, fetchCurrency, currencies}) => {
+const Splashscreen = ({btnClick, fetchCurrency, currencies, loading}) => {
 
     useEffect(() => {
         fetchCurrency()
-    }, [])
+    }, [fetchCurrency])
 
     return (
         <div>
             <h1>Currency converter</h1>
             <button onClick={() => btnClick()}>Change loading status</button>
-            <Currencylist list={currencies} />
+            <div style={{display: 'flex'}}>
+                <Currencylist />
+                <CurrencyConverter />
+            </div>
         </div>
     )
 }

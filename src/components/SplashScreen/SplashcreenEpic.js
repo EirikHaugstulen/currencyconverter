@@ -7,7 +7,7 @@ import {fetchCurrencySuccess} from "./SplashscreenActions";
 export const fetchCurrencyEpic = action$ => action$.pipe(
     ofType(currencyTypes.FETCH_CURRENCY),
     mergeMap(() => ajax.getJSON('https://api.exchangeratesapi.io/latest?base=NOK').pipe(
-        map(response => fetchCurrencySuccess(response.rates))
+            map(response => fetchCurrencySuccess(response.rates))
         )
     )
 )

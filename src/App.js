@@ -7,12 +7,12 @@ const store = configureStore()
 
 function App() {
   return (
-      <Provider store={store}>
         <div className="App">
-          <h1>Test</h1>
-            <Splashscreen />
+          <Provider store={store}>
+              <h1>Test</h1>
+                <Splashscreen />
+          </Provider>
         </div>
-      </Provider>
   );
 }
 
