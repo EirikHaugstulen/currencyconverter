@@ -12,10 +12,16 @@ export default function (state = initialState, action) {
                 ...state,
                 isLoading: !state.isLoading
             }
+        case (currencyTypes.FETCH_CURRENCY):
+            return {
+                ...state,
+                isLoading: true
+            }
         case (currencyTypes.FETCH_CURRENCY_SUCCESS):
             return {
                 ...state,
-                currencies: action.payload
+                currencies: action.payload,
+                isLoading: false
             }
         default:
             return state;
